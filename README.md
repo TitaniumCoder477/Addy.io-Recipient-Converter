@@ -18,7 +18,7 @@
 Recommended: Obtain from addons.thunderbird.net
 
 Alternative:
-1. Download the latest release from [Releases](../../releases)
+1. Download the latest release from the releases folder in this repo (b/c Github doesn't support XPI files as releases)
 2. In Thunderbird: **Tools → Add-ons and Themes → Extensions → Gear icon → Install Add-on From File**
 3. Select the `.xpi` file
 
