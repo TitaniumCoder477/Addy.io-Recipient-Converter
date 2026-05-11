@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Addy.io Recipient Converter",
+  "version": "1.1.0",
+  "description": "Converts recipients using the identity reply-to address on send.",
+  "permissions": ["compose", "accountsRead", "identity"],
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "64": "images/icon-64.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "u1o4ov22@neptunedev.us",
+      "strict_min_version": "128.0"
+    }
+  }
+}
