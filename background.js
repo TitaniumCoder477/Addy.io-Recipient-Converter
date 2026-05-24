@@ -5,12 +5,33 @@ function parseMailboxAddress(value) {
   return value.replace(/^"|"$/g, "").trim();
 }
 
+/**
+ * Checks if an email address is already in Addy.io / alias forwarding format
+ * e.g. base+recipientLocal=recipientDomain@baseDomain
+ */
+function isAlreadyAddyFormat(email) {
+  const addr = parseMailboxAddress(email);
+  if (!addr) return false;
+
+  const localPart = addr.split('@')[0];
+  if (!localPart) return false;
+
+  // Look for pattern: something + something = something
+  return /\+[^=]+=[^=]/.test(localPart);
+}
+
 function convertRecipient(baseEmail, recipient) {
   console.debug("[Addy.io Converter] Converting:", recipient, "with base:", baseEmail);
-  
+
   const addr = parseMailboxAddress(recipient);
   if (!addr || !addr.includes("@")) {
-    console.debug("[Addy.io Converter] Skipping (invalid):", recipient);
+    console.debug("[Addy.io Converter] Skipping (invalid format):", recipient);
+    return recipient;
+  }
+
+  // NEW: Skip if already in Addy.io format
+  if (isAlreadyAddyFormat(recipient)) {
+    console.debug("[Addy.io Converter] Already in Addy.io format - skipping:", recipient);
     return recipient;
   }
 
